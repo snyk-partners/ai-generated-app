@@ -43,7 +43,7 @@ describe('PDF Upload/Download', () => {
       .attach('pdf', testPdfPath);
 
     expect(uploadRes.statusCode).toBe(200);
-    expect(uploadRes.text).toContain('File uploaded');
+    expect(uploadRes.body.message).toContain('File uploaded');
 
     const files = fs.readdirSync(uploadDir);
     const filename = files[0];
