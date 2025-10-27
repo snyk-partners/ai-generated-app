@@ -4,6 +4,7 @@ import fs from 'fs';
 import path from 'path';
 
 export const app = express();
+app.disable('x-powered-by');
 const upload = multer({
   dest: 'uploads/',
   fileFilter: (req, file, cb) => {
@@ -21,11 +22,12 @@ app.post('/upload', upload.single('pdf'), (req, res) => {
   if (!req.file) {
     return res.status(400).send('No file uploaded.');
   }
-  res.send(`File uploaded: ${req.file.filename}`);
+  res.json({ message: 'File uploaded', filename: req.file.filename });
 });
 
 app.get('/download/:filename', (req, res) => {
-  const filePath = path.join(process.cwd(), 'uploads', req.params.filename);
+  const sanitizedFilename = path.basename(req.params.filename);
+  const filePath = path.join(process.cwd(), 'uploads', sanitizedFilename);
   const fileStream = fs.createReadStream(filePath);
   fileStream.on('error', () => {
     res.status(404).send('File not found');
