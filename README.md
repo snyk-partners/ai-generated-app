@@ -57,12 +57,14 @@ This repo contains a Path Traversal vulnerability that can be exploited as follo
 3. Use your preferred AI tooling with a prompt similar to the following:
 
 ```
-You are an expert at developing secure code.
+You are an expert at developing secure code. Snyk flagged several SAST and SCA issues in this application.
 
-Your task is to do the following:
-1. IMPORTANT: Use the Snyk MCP Server to get information about SAST and SCA vulnerabilities.
-2. Fix all of the SAST and SCA vulnerabilities in the project.
-3. Use the Snyk MCP server to confirm that all issues were remediated.
-4. Build and test the project (if it has unit tests) to ensure you didn't break it.
-5. Do not run the application. Let the user validate the application after you're done remediating vulnerabilities.
+Please do the following:
+
+1. Use Snyk to get context on the issues.
+2. Fix all of the issues.
+3. Use Snyk again to confirm the issues are fixed. If the issues are not fixed, go back to the previous step.
+4. Build the app and run unit tests to ensure you didn’t break it. I’ll run it and do additional validation when you’re done.
+
+Thanks!
 ```
