@@ -4,6 +4,7 @@ import fs from 'fs';
 import path from 'path';
 
 export const app = express();
+app.disable('x-powered-by');
 const upload = multer({
   dest: 'uploads/',
   fileFilter: (req, file, cb) => {
